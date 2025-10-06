@@ -3,7 +3,6 @@ package ru.aksh.qraccess.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.aksh.qraccess.domain.User;
-import ru.aksh.qraccess.exception.UserNotFoundException;
 import ru.aksh.qraccess.model.response.UserResponse;
 import ru.aksh.qraccess.service.UserServiceImpl;
 
@@ -31,19 +30,17 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserResponse getUserById(@PathVariable Integer id) {
-        User user = userService.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User id " + id + " is not found"));
-        return new UserResponse(user);
+    public UserResponse findUserById(@PathVariable Long id) {
+        return userService.findById(id);
     }
 
     @PutMapping("/{id}")
-    public UserResponse updateUser(@PathVariable Integer id, @RequestBody User userDetails) {
-        return userService.updateUser(id, userDetails);
+    public void updateUser(@PathVariable Long id, @RequestBody User updateUserDetails) {
+        userService.updateUser(id, updateUserDetails);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Integer id) {
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
     }
 }

@@ -3,7 +3,7 @@ package ru.aksh.qraccess.model.response;
 import ru.aksh.qraccess.domain.User;
 
 public class UserResponse {
-    private Integer id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -18,11 +18,11 @@ public class UserResponse {
         this.middleName = user.getMiddleName();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -21,8 +21,8 @@ public class QrCodeController {
         this.qrCodeService = qrCodeService;
     }
 
-    @PostMapping()
-    public UserResponse updateCqCode(@RequestParam UUID uuid) {
+    @PostMapping("/check")
+    public UserResponse getUserAndUpdateQrCode(@RequestParam UUID uuid) {
         return qrCodeService.getUserAndUpdateQrCode(uuid);
     }
 }

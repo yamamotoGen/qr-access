@@ -10,20 +10,22 @@ import java.util.UUID;
 public class QrCode {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
     @UuidGenerator
-    @Column(name = "qr_uuid")
+    @Column(name = "qr_code", unique = true, nullable = false)
     private UUID uuid;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "user_id"))
+    @JoinColumn(name = "user_id", unique = true, foreignKey = @ForeignKey(name = "fk_qr_code_user_id"))
     private User user;
 
     public QrCode() {
     }
 
-    public QrCode(UUID uuid, User user) {
-        this.uuid = uuid;
+    public QrCode(User user) {
         this.user = user;
     }
 

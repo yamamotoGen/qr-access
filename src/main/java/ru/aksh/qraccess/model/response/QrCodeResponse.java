@@ -3,15 +3,24 @@ package ru.aksh.qraccess.model.response;
 import java.util.UUID;
 
 public class QrCodeResponse {
+    private Long id;
     private UUID uuid;
     private UserResponse user;
 
     public QrCodeResponse() {
     }
 
-    public QrCodeResponse(UUID uuid, UserResponse user) {
-        this.uuid = uuid;
+    public QrCodeResponse(Long id, UserResponse user) {
+        this.id = id;
         this.user = user;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public UUID getUuid() {
